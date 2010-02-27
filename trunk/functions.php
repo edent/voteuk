@@ -323,7 +323,7 @@
 		//If valid, looks up postcode at Yahoo, gets lat & long
 		//Get Google map from Lat & long
 		
-		global $google_maps_api_key;
+		//global $google_maps_api_key;
 		
 		$home = latlongYahoo($postcode_home);
 		$lat_home = $home[ResultSet][Result][Latitude];
@@ -335,11 +335,14 @@
 
 
 		//Google Map
-		$map_img = "http://maps.google.com/staticmap?" 
+		
+	//New Google Maps API v2
+	//http://maps.google.com/maps/api/staticmap?size=&maptype=roadmap&mobile=true&markers=&sensor=false
+		$map_img = "http://maps.google.com/maps/api/staticmap?" 
 						. "&amp;markers=" . $lat_home .",". $long_home ."|". $lat_poll .",". $long_poll .""
 						. "&amp;size=" . $deviceScreenWidth . "x" . $deviceScreenHeight 
-						. "&amp;maptype=mobile"
-						. "&amp;key=" . $google_maps_api_key 
+						. "&amp;maptype=roadmap"
+						. "&mobile=true"
 						. "&amp;sensor=false";
 		return $map_img;
 		//echo "<img src=\"" . $map_img . "\" />";		

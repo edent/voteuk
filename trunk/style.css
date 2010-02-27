@@ -1,0 +1,27 @@
+<style type="text/css"> 
+	.text    { background: #666666; color: #000000; }
+	.alert    { background: #ffff00; color: #ff0000; }
+	.navigation    { background: #00bbff; color: #ffffff; }
+	.title 	{ background: #eeeeee; color: #000000; }
+	.header  { background: #0099ff; color: #ffffff; }
+	.footer  { background: #0099ff; color: #ffffff;  }
+	.company { font-weight: bold; }
+	.titleImage {float: left; }
+	.footerImage {float: right; }
+	hr	{ clear: both; border:solid; border-width:1px; border-bottom-color:#000073; border-top-color:#ffffff; border-left-color:#ffffff; border-right-color:#ffffff;}
+	.top-news img { float: left; margin-right: 5px; }
+	.top-news h3, .news h3 { font-size: large; font-weight: bold; }
+	.accesskey { text-decoration: underline; }
+	a { color: blue; text-decoration: underline; }
+	a.whitelink {color: white; text-decoration:underline;}
+	.validation { margin-top: 10px; }
+	.product img { float: left; margin-right: 5px; }
+	.product h3, .news h3 { font-size: large; font-weight: bold; }
+	
+	
+	body
+	{ 
+		background-color: #eeeeee;
+		color: #111111;
+	}
+</style>

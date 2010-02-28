@@ -1,8 +1,15 @@
 <?php
 	//Global Keys
+	
+	//APIs
 	$yahoo_api_key = "";
 	$google_maps_api_key = "";
 	$twfy_api_key = "";
+
+	//mySQL
+	$mySQL_username="";
+	$mySQL_password="";
+	$mySQL_database="";
 	//
 	
 	function getREST($url)
@@ -229,9 +236,13 @@
 		if (!$phpobj[error])
 		{
 			$name = htmlspecialchars($phpobj["full_name"]);
-			$party = htmlspecialchars($phpobj["party"]); 
-			$image = "http://i.tinysrc.mobi/http://www.theyworkforyou.com" . htmlspecialchars($phpobj["image"]);
-			$content = "<img src='{$image}' alt='{$name}' />Your current MP is {$name} - a member of the {$party} party.";
+			$party = htmlspecialchars($phpobj["party"]);
+			$image = "http://www.theyworkforyou.com" . htmlspecialchars($phpobj["image"]);
+			$imageWidth = strval($phpobj["image_width"]);
+			$imageHeight = $phpobj["image_height"];
+			
+			$content = "<img src='{$image}' alt='{$name}' width='{$imageWidth}' height='{$imageHeight}' />Your current MP is {$name} - a member of the {$party} party.";
+
 			return $content;
 		}
 		else
@@ -342,7 +353,7 @@
 						. "&amp;markers=" . $lat_home .",". $long_home ."|". $lat_poll .",". $long_poll .""
 						. "&amp;size=" . $deviceScreenWidth . "x" . $deviceScreenHeight 
 						. "&amp;maptype=roadmap"
-						. "&mobile=true"
+						. "&amp;mobile=true"
 						. "&amp;sensor=false";
 		return $map_img;
 		//echo "<img src=\"" . $map_img . "\" />";		
@@ -437,12 +448,12 @@
 	
 	function electoralInfoFromPostcode($postcode)
 	{
-		$username="";
-		$password="";
-		$database="";
-
-		mysql_connect(localhost,$username,$password);
-		@mysql_select_db($database) or die( "Unable to select database");
+		global $mySQL_username;
+		global $mySQL_password;
+		global $mySQL_database;
+	
+		mysql_connect(localhost,$mySQL_username,$mySQL_password);
+		@mysql_select_db($mySQL_database) or die( "Unable to select database");
 		//echo "Connected to MySQL. passed ".$postcode."<br />";
 
 		$query = "SELECT Council_ID from postcode_councilID WHERE postcode = '". $postcode . "'";

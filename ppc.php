@@ -1,4 +1,9 @@
 <div class="ppc">
+<?php	
+	echo "You can see who is really standing in your constituency at <a href=\"" . yourNextMPLink(str_replace(" ", "+", $postcodeGet)) . "\">YourNextMP</a> (not mobile friendly)";
+?>
+</div>
+<div class="ppc">
 	<p>
 		<img src="logo.png" width="50" height="50" alt="Shakespeare" />
 		William Shakespeare. <a href="http://en.m.wikipedia.org/wiki/Hamlet">Hamlet Party</a>. Visit their <a href="http://en.m.wikipedia.org/wiki/William_Shakespeare">website</a> or <a href="wtai://wp/mc;+44">give them a call</a>.

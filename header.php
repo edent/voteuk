@@ -9,18 +9,14 @@
 		include "style.css";
 	?>
 	<title>
-<?php
+	<?php
 			echo $title;
-?>
+	?>
 	</title>
 </head>
 <body>
 	<div class="header">
-		<p>
-<?php
+	<?php
 			echo $header;
-?>
-		</p>
+	?>
 	</div>
-<?php
-?>

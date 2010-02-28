@@ -39,13 +39,13 @@
 ?> 
 
 <div class="constituency">
-	Your postcode is <?php echo $pc; ?>, that puts you in the constituency of <?php echo $constituency; ?>
+	Your postcode is <?php echo $pc; ?>, that puts you in the constituency of <a href="http://en.m.wikipedia.org/wiki/<?php echo $constituency; ?>_%28UK_Parliament_constituency%29"><?php echo $constituency; ?></a>.
 </div>
 <div class="newconstituency">
 	<?php
 		if ($constituency != $futureConstituency)
 		{
-			echo "Due to boundary changes, on election day you will be in the consituency of {$futureConstituency}.";
+			echo "Due to boundary changes, on election day you will be in the consituency of <a href=\"http://en.m.wikipedia.org/wiki/{$futureConstituency}_%28UK_Parliament_constituency%29\">{$futureConstituency}</a>.";
 		}
 	 ?>
 </div>

@@ -475,6 +475,20 @@
 		return $info_row;
 	}
 	
+	function yourNextMPLink($postcode)
+	{
+		//http://www.yournextmp.com/seats/?query=sw1a+1aa&output=json
+		$req = "http://www.yournextmp.com/seats/?query=".$postcode."&output=json";
+		
+		// Make the request
+		//Get the JSON of the Constituency from postcode
+		$json = getREST($req);
+		
+		$obj = json_decode($json);
+		//var_dump(json_decode($json, true));	
+		return $obj->{'result'}[0]->{'url'};
+	}
+	
 	function validPhoneNumber($number)
 	{
 		$validNumber = substr($number, 0, strpos($number, '/')); 

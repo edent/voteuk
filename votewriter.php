@@ -43,7 +43,7 @@
 </div>
 <div class="newconstituency">
 	<?php
-		if ($constituency != $futureConstituency)
+		if (str_replace("&amp;", "and", $constituency) != $futureConstituency)
 		{
 			echo "Due to boundary changes, on election day you will be in the constituency of <a href=\"http://en.m.wikipedia.org/wiki/{$futureConstituency}_%28UK_Parliament_constituency%29\">{$futureConstituency}</a>.";
 		}

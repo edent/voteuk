@@ -1,16 +1,8 @@
 <?php
 	//Global Keys
 	
-	//APIs
-	$yahoo_api_key = "";
-	$google_maps_api_key = "";
-	$twfy_api_key = "";
-
-	//mySQL
-	$mySQL_username="";
-	$mySQL_password="";
-	$mySQL_database="";
-	//
+	//API Keys and MySQL stuff
+	include "config.php";
 	
 	function getREST($url)
 	{
@@ -241,7 +233,7 @@
 			$imageWidth = strval($phpobj["image_width"]);
 			$imageHeight = $phpobj["image_height"];
 			
-			$content = "<img src='{$image}' alt='{$name}' width='{$imageWidth}' height='{$imageHeight}' />Your current MP is {$name} - a member of the {$party} party.";
+			$content = "<img src='{$image}' alt='{$name}' width='{$imageWidth}' height='{$imageHeight}' class='floatLeft' />Your current MP is {$name} - a member of the {$party} party.";
 
 			return $content;
 		}
@@ -502,6 +494,89 @@
 		{
 			return $number;
 		}
+	}
+	
+	function ppcYourNextMP($postcode)
+	{
+		//http://stage.yournextmp.com/seats/search?query=sw1a+1aa&output=json
+		$req = "http://stage.yournextmp.com/seats/search?query=".$postcode."&output=json";
+		
+		// Make the request
+		//Get the JSON of the Constituency from postcode
+		$json = getREST($req);
+		
+		$obj = json_decode($json, true);
+		//var_dump(json_decode($json, true));	
+		$candidateArray = $obj['result'][0]["candidates"];
+		
+		
+		//var_dump(json_decode($json, true));
+		echo "<hr/>";
+		var_dump($candidateArray);
+		
+		
+		echo "<hr/>";
+		echo $candidateArray[0]["name"];
+		echo "<hr/>";
+		echo "number of PPCs = " . count($candidateArray);
+		
+		if ($device->uriSchemeTel == 1)
+		{
+			$phonePrefix = "tel:";
+		}
+		else
+		{
+			$phonePrefix = "wtai://wp/mc;";
+		}
+		//$dialPhoneNumber .= str_replace(" ", "", $council_phone) . "\">{$council_phone}</a>"; 
+		
+		for ($i = 0; $i < count($candidateArray); $i++)
+		{
+			echo "<div class=\"ppc\">";
+
+			if ($candidateArray[$i]["image"] != null) //Candidate's image
+			{
+				echo "<img src=\"" . $candidateArray[$i]["image"]["small"]["url"] 
+					. "\" height=\"{$candidateArray[$i]["image"]["small"]["height"]}\"
+					width=\"{$candidateArray[$i]["image"]["small"]["width"]}\"
+					/>";
+			}
+			else //or Party Image
+			{
+				echo "<img src=\"" . $candidateArray[$i]["party"]["image"]["small"]["url"] 
+					. "\" height=\"{$candidateArray[$i]["image"]["small"]["height"]}\"
+					width=\"{$candidateArray[$i]["image"]["small"]["width"]}\"
+					/>";
+			}
+			echo $candidateArray[$i]["name"] . " a member of the " 
+				. $candidateArray[$i]["party"]["name"] . ".  ";
+			if ($candidateArray[$i]["email"] != null)
+			{
+				echo "Email: <a href=\"mailto:" . $candidateArray[$i]["email"] . "\">" 
+				. $candidateArray[$i]["email"] . "</a>.  ";
+			}
+			
+			if ($candidateArray[$i]["phone"] != null)
+			{
+				echo "Call: <a href=\"" . $phonePrefix . str_replace(" ", "", $candidateArray[$i]["phone"]) . "\">" . $candidateArray[$i]["phone"] . "</a>";
+			}
+			echo "</div>";
+		}
+	
+	}
+	
+	function getPPCArray($postcode)
+	{
+		$postcode = str_replace(" ", "+", $postcode);
+		//http://stage.yournextmp.com/seats/search?query=sw1a+1aa&output=json
+		$req = "http://stage.yournextmp.com/seats/search?query=".$postcode."&output=json";
+		// Make the request
+		//Get the JSON of the Constituency from postcode
+		$json = getREST($req);
+		$obj = json_decode($json, true);
+		$candidateArray = $obj['result'][0]["candidates"];
+		
+		return $candidateArray;
 	}
 	
 ?>

@@ -1,23 +1,18 @@
 <style type="text/css"> 
 	.text    { background: #666666; color: #000000; }
 	.alert    { background: #ffff00; color: #ff0000; }
-	.navigation    { background: #00bbff; color: #ffffff; }
+	.navigation    { background: #000000; color: #ffffff; }
 	.title 	{ background: #eeeeee; color: #000000; }
-	.header  { background: #0099ff; color: #ffffff; }
-	.footer  { background: #0099ff; color: #ffffff;  }
+	.header  { background: #000000; color: #ffffff; }
+	.footer  { background: #000000; color: #ffffff;  }
 	.company { font-weight: bold; }
 	.titleImage {float: left; }
 	.footerImage {float: right; }
-	hr	{ clear: both; border:solid; border-width:1px; border-bottom-color:#000073; border-top-color:#ffffff; border-left-color:#ffffff; border-right-color:#ffffff;}
-	.top-news img { float: left; margin-right: 5px; }
-	.top-news h3, .news h3 { font-size: large; font-weight: bold; }
-	.accesskey { text-decoration: underline; }
+	hr	{ clear: both; border:solid; border-width:1px;}
 	a { color: blue; text-decoration: underline; }
 	a.whitelink {color: white; text-decoration:underline;}
-	.validation { margin-top: 10px; }
-	.product img { float: left; margin-right: 5px; }
-	.product h3, .news h3 { font-size: large; font-weight: bold; }
-	
+	img.floatLeft { float: left; margin: 5px; 
+}
 	
 	body
 	{ 

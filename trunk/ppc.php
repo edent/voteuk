@@ -1,17 +1,45 @@
-<div class="ppc">
 <?php	
-	echo "You can see who is really standing in your constituency at <a href=\"" . yourNextMPLink(str_replace(" ", "+", $postcodeGet)) . "\">YourNextMP</a> (not mobile friendly)";
+	$candidateArray = getPPCArray($pc);
+	
+	if ($device->uriSchemeTel == 1)
+	{
+		$phonePrefix = "tel:";
+	}
+	else
+	{
+		$phonePrefix = "wtai://wp/mc;";
+	}
+	
+	for ($i = 0; $i < count($candidateArray); $i++)
+	{
+		echo "<div class=\"ppc\" style=\"clear:both;\">";
+
+		if ($candidateArray[$i]["image"] != null) //Candidate's image
+		{
+			echo "<img src=\"" . $candidateArray[$i]["image"]["medium"]["url"] 
+				. "\" height=\"{$candidateArray[$i]["image"]["medium"]["height"]}\"
+				width=\"{$candidateArray[$i]["image"]["medium"]["width"]}\" class=\"floatLeft\" 
+				alt=\"{$candidateArray[$i]["name"]}\"/>";
+		}
+		else //or Party Image
+		{
+			echo "<img src=\"" . $candidateArray[$i]["party"]["image"]["medium"]["url"] 
+				. "\" height=\"{$candidateArray[$i]["image"]["medium"]["height"]}\"
+				width=\"{$candidateArray[$i]["image"]["medium"]["width"]}\" class=\"floatLeft\"
+				alt=\"{$candidateArray[$i]["name"]}\"/>";
+		}
+		echo $candidateArray[$i]["name"] . " a member of the " 
+			. $candidateArray[$i]["party"]["name"] . ".  ";
+		if ($candidateArray[$i]["email"] != null)
+		{
+			echo "Email: <a href=\"mailto:" . $candidateArray[$i]["email"] . "\">" 
+			. $candidateArray[$i]["email"] . "</a>.  ";
+		}
+		
+		if ($candidateArray[$i]["phone"] != null)
+		{
+			echo "Call: <a href=\"" . $phonePrefix . str_replace(" ", "", $candidateArray[$i]["phone"]) . "\">" . $candidateArray[$i]["phone"] . "</a>";
+		}
+		echo "</div>";
+	}
 ?>
-</div>
-<div class="ppc">
-	<p>
-		<img src="logo.png" width="50" height="50" alt="Shakespeare" />
-		William Shakespeare. <a href="http://en.m.wikipedia.org/wiki/Hamlet">Hamlet Party</a>. Visit their <a href="http://en.m.wikipedia.org/wiki/William_Shakespeare">website</a> or <a href="wtai://wp/mc;+44">give them a call</a>.
-	</p>
-</div>
-<div class="ppc">
-	<p>
-		<img src="Pertweejon.jpg" width="50" height="50" alt="Shakespeare" />
-		The Doctor. <a href="http://en.m.wikipedia.org/wiki/Time_Lord">Time Lord Party</a>. Visit their <a href="http://en.m.wikipedia.org/wiki/Doctor_(Doctor_Who)">website</a> or <a href="wtai://wp/mc;+44">give them a call</a>.
-	</p>
-</div>

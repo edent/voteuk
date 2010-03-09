@@ -1,0 +1,11 @@
+<?php
+	//APIs
+	$yahoo_api_key = "";
+	$google_maps_api_key = "";
+	$twfy_api_key = "";
+
+	//mySQL
+	$mySQL_username="";
+	$mySQL_password="";
+	$mySQL_database="";
+?>

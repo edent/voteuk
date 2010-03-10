@@ -60,7 +60,7 @@
 		<div class="form">
 			<form method="get" action="/">
 				<p>
-					<label for="q">What's your <em>home</em> postcode?</label><br/>
+					<label for="q">What's your <em>full home</em> postcode? For example W1A 1AA.</label><br/>
 					<input class="input" type="text" title="Enter your postcode" maxlength="8" size="8" name="q" id="q" value="" />
 					<input type="submit" value="Help me vote" /> 
 				</p>

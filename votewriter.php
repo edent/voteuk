@@ -71,9 +71,6 @@
 	<?php echo $currentMP; ?>
 </div>
 <hr/>
-<div class="ppc">
-	These people want you to vote for them (alphabetical order).
-</div>
 <?php 
 	include "ppc.php"; 
 ?>
@@ -82,10 +79,7 @@
 This site would not have been possible without the following organisations:
 </div>
 <div style="clear:both;">
-<img src="by-nc-sa-80x15.png" height="15" width="80" alt="Creative Commons BY-NC-SA" style="floatLeft" />Candidate data provided by YourNextMP.com under a Creative Commons license.
-</div>
-<div style="clear:both;">
-<img src="by-sa-80x15.png" height="15" width="80" alt="Creative Commons BY-SA" style="floatLeft" />Constituency data provided by TheyWorkForYou.com under a Creative Commons license.
+<img src="by-sa-80x15.png" height="15" width="80" alt="Creative Commons BY-NC-SA" style="floatLeft" />Candidate data provided by YourNextMP.com under a Creative Commons license. Constituency data provided by TheyWorkForYou.com under a Creative Commons license.
 </div>
 <div style="clear:both;">
 Geo-Coding and Mapping data provided by Google and Yahoo.

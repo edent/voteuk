@@ -18,9 +18,8 @@
 			<h1>It's time for you to make a difference</h1>
 		</div>
 		<div class="content">
-			<h2>You only have <?php echo (daysUntilElection() - 11); ?> days left to register to vote!</h2>
+			<h2>You only have <?php echo (daysUntilElection() - 13); ?> days left to register to vote!</h2>
 		</div>
-
 <?php
 	$postcodeGet = $_GET["q"];
 	if ($postcodeGet)
@@ -56,7 +55,7 @@
 <?php
 	}
 ?>
-	<div class="form">
+		<div class="form">
 			<form method="get" action="/">
 				<p>
 					<label for="q">What's your <em>full home</em> postcode? For example W1A 1AA.</label><br/>
@@ -65,6 +64,9 @@
 					<input type="submit" value="Help me vote" /> 
 				</p>
 			</form>		
+		</div>
+		<div class="content">
+			Your can register to vote up to 11 working days before the General Election is held.  Don't delay - register today!
 		</div>
 		<div class="content">
 			We will never pass on your postcode or personal details to any political party.  This site is anonymous.<br/>

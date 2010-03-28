@@ -1,5 +1,31 @@
 <?php	
-	$candidateArray = getPPCArray($pc);
+	//$candidateArray = getPPCArray($pc);
+	if (str_replace("&amp;", "and", $constituency) != $futureConstituency)
+	{
+		$ppcConstituency = strtolower($futureConstituency);
+	}
+	else
+	{
+		$ppcConstituency = strtolower($constituency);
+	}
+	
+	$ppcConstituency = str_replace(" ", "_", $ppcConstituency);
+	$ppcConstituency = str_replace("&amp;", "and", $ppcConstituency);
+
+	$candidateArray = getPPCArray($ppcConstituency);
+	
+	if (count($candidateArray) > 1)
+	{
+?>
+	<div class="ppc">
+		These people want you to vote for them (alphabetical order).
+	</div>
+<?
+	}
+	else
+	{
+		//echo $ppcConstituency;
+	}
 	
 	if ($device->uriSchemeTel == 1)
 	{

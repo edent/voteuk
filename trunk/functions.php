@@ -10,9 +10,24 @@
 		curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
 		curl_setopt($curl_handle,CURLOPT_URL,$url);
 		$response = curl_exec($curl_handle);
+		$response_info=curl_getinfo($curl_handle);
 		curl_close($curl_handle);
-		
-		return $response;
+	/*		
+		if ($response_info['http_code'] == 302) //Redirection fix for YNMP
+		{
+			list($header) = explode("\r\n\r\n", $response, 2);
+			$matches = array();
+ 			preg_match('/(Location:|URI:)(.*?)\n/', $header, $matches);
+			$url = trim(array_pop($matches));			
+			$newURL = $url . "?output=json";
+			getRest($newURL);
+		}
+		else
+		{
+			return $response;
+		}
+	*/
+	return $response;
 	}
 	
 	function daysUntilElection()
@@ -499,7 +514,7 @@
 	function ppcYourNextMP($postcode)
 	{
 		//http://stage.yournextmp.com/seats/search?query=sw1a+1aa&output=json
-		$req = "http://stage.yournextmp.com/seats/search?query=".$postcode."&output=json";
+		$req = "http://yournextmp.com/seats/search?query=".$postcode."&output=json";
 		
 		// Make the request
 		//Get the JSON of the Constituency from postcode
@@ -569,12 +584,16 @@
 	{
 		$postcode = str_replace(" ", "+", $postcode);
 		//http://stage.yournextmp.com/seats/search?query=sw1a+1aa&output=json
-		$req = "http://stage.yournextmp.com/seats/search?query=".$postcode."&output=json";
+		//$req = "http://stage.yournextmp.com/seats/search?query=".$postcode."&output=json";
+		//http://www.yournextmp.com/seats/cities_of_london_and_westminster&output=json
+		$req = "http://www.yournextmp.com/seats/" . $postcode . "?output=json";
+//		echo $req;
 		// Make the request
 		//Get the JSON of the Constituency from postcode
 		$json = getREST($req);
 		$obj = json_decode($json, true);
-		$candidateArray = $obj['result'][0]["candidates"];
+		//$candidateArray = $obj['result'][0]["candidates"];
+		$candidateArray = $obj['result']["candidates"];
 		
 		return $candidateArray;
 	}

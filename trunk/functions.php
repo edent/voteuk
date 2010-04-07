@@ -36,7 +36,7 @@
 		$todaysDate = time();
 	
 		// Get the timestamp of 2010 June 03
-		$electionDate = mktime(0,0,0,06,03,2010);
+		$electionDate = mktime(0,0,0,05,06,2010);
 
 		$dateDiff = $electionDate - $todaysDate;
 

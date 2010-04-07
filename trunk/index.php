@@ -8,6 +8,8 @@
 
 ?>
 	<head>
+	<meta name="title" content="iVote2010 - call and email your candidates" /> 
+	<meta name="description" content="Register to vote in the 2010 General Election.  See who wants your vote." /> 
 		<?php
 			include "style.css";
 		?>

@@ -5,7 +5,7 @@
 		$date1 = time();
 	
 		// Get the timestamp of 2010 June 03
-		$date2 = mktime(0,0,0,03,06,2010);
+		$date2 = mktime(0,0,0,06,05,2010);
 
 		$dateDiff = $date1 - $date2;
 

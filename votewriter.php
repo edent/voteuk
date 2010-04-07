@@ -7,35 +7,36 @@
 	$council_data_array = electoralInfoFromPostcode($pc);
 
 	//Assuming we've got data about the post code
-	if ($council_data_array != FALSE)
-	{
+
 		//Get the constituency & future changes
 		$constituency = theyWorkForYou($pc);
 		$futureConstituency = futureConstituency($pc);
 		$currentMP = currentMP($pc);
 		$invalid = "Invalid";
 		$pos = strpos($constituency,$invalid);
+		if ($council_data_array != FALSE)
+		{
+			//All the data about the council
+			$council_phone = validPhoneNumber($council_data_array["Council_Phone"]);
+			$council_email = $council_data_array["Council_Email"];
+			$council_website = $council_data_array["Council_Website"];
+			$council_name = $council_data_array["Council_Name"];
+			$council_address2 = $council_data_array["Council_Address2"];
+			$council_postcode = $council_data_array["Council_Postcode"];
 		
-		//All the data about the council
-		$council_phone = validPhoneNumber($council_data_array["Council_Phone"]);
-		$council_email = $council_data_array["Council_Email"];
-		$council_website = $council_data_array["Council_Website"];
-		$council_name = $council_data_array["Council_Name"];
-		$council_address2 = $council_data_array["Council_Address2"];
-		$council_postcode = $council_data_array["Council_Postcode"];
-		
-		//Formatted Data
-		$dialPhoneNumber = "<a href=\"";
+			//Formatted Data
+			$dialPhoneNumber = "<a href=\"";
 
-		if ($device->uriSchemeTel == 1)
-		{
-			$dialPhoneNumber .= "tel:";
+			if ($device->uriSchemeTel == 1)
+			{
+				$dialPhoneNumber .= "tel:";
+			}
+			else
+			{
+				$dialPhoneNumber .= "wtai://wp/mc;";
+			}
+			$dialPhoneNumber .= str_replace(" ", "", $council_phone) . "\">{$council_phone}</a>";		
 		}
-		else
-		{
-			$dialPhoneNumber .= "wtai://wp/mc;";
-		}
-		$dialPhoneNumber .= str_replace(" ", "", $council_phone) . "\">{$council_phone}</a>";		
 ?> 
 
 <div class="constituency">
@@ -49,6 +50,10 @@
 		}
 	 ?>
 </div>
+<?php
+		if ($council_data_array != FALSE)
+		{
+?>
 <hr/>
 <div class="register">
 	Call <?php echo $dialPhoneNumber; ?> to register to vote.  You will be sent a simple form to fill in. It's free to post the form back.<br/>
@@ -66,6 +71,9 @@
 	include "map.php"; 
 ?>
 </div>
+<?php
+		}
+?>
 <hr/>
 <div class="current">
 	<?php echo $currentMP; ?>
@@ -82,15 +90,20 @@ This site would not have been possible without the following organisations:
 <img src="by-sa-80x15.png" height="15" width="80" alt="Creative Commons BY-NC-SA" style="floatLeft" />Candidate data provided by YourNextMP.com under a Creative Commons license. Constituency data provided by TheyWorkForYou.com under a Creative Commons license.
 </div>
 <div style="clear:both;">
+Contains Ordnance Survey data © Crown copyright and database right 2010.
+Contains Royal Mail data © Royal Mail copyright and database right 2010.
+</div>
+<div style="clear:both;">
 Geo-Coding and Mapping data provided by Google and Yahoo.
 </div>
 <div style="clear:both;">
 Electoral information provided by the Electoral Commission.
 </div>
 <?php
-	}
+/*	}
 	else //invalid postcode
 	{
+	
 ?>
 	<div class="content">
 		We can't find that postcode. Please check it and try again.<br/>
@@ -98,4 +111,5 @@ Electoral information provided by the Electoral Commission.
 <?php
 	
 	}
+*/
 ?>

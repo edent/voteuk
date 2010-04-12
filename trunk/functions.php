@@ -231,6 +231,7 @@
 		."getMP?"
 		."key=" . $twfy_api_key
 		."&postcode=" . $postcode
+		."&always_return=1"
 		."&output=php";
 		
 		// Make the request
@@ -248,7 +249,7 @@
 			$imageWidth = strval($phpobj["image_width"]);
 			$imageHeight = $phpobj["image_height"];
 			
-			$content = "<img src='{$image}' alt='{$name}' width='{$imageWidth}' height='{$imageHeight}' class='floatLeft' />Your current MP is {$name} - a member of the {$party} party.";
+			$content = "<img src='{$image}' alt='{$name}' width='{$imageWidth}' height='{$imageHeight}' class='floatLeft' />Your previous MP was {$name} - a member of the {$party} party.";
 
 			return $content;
 		}
